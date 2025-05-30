@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ultimi movimenti</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #e3f2fd;
+    }
+    .background {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #1976d2 0%, #64b5f6 100%);
+      opacity: 0.18;
+      z-index: 0;
+    }
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      position: relative;
+    }
+    .movimenti-card {
+      background: #fff;
+      padding: 2.5rem 2rem 2rem 2rem;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(25, 118, 210, 0.18);
+      width: 420px;
+      text-align: center;
+      position: relative;
+      margin-top: 2rem;
+    }
+    h2 {
+      margin-bottom: 2rem;
+      color: #1976d2;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      background: #f5faff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+    }
+    thead {
+      background: linear-gradient(90deg, #1976d2 0%, #64b5f6 100%);
+      color: #fff;
+    }
+    th, td {
+      padding: 0.9rem 0.5rem;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+    th {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    tbody tr:nth-child(even) {
+      background: #e3f2fd;
+    }
+    tbody tr:hover {
+      background: #bbdefb;
+      transition: background 0.2s;
+    }
+    p {
+      color: #1976d2;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    a.button {
+      display: inline-block;
+      background: linear-gradient(90deg, #1976d2 0%, #64b5f6 100%);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-top: 1rem;
+      letter-spacing: 0.5px;
+    }
+    a.button:hover {
+      background: linear-gradient(90deg, #1565c0 0%, #42a5f5 100%);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 18px rgba(25, 118, 210, 0.13);
+    }
+    @media (max-width: 600px) {
+      .movimenti-card {
+        width: 98vw;
+        padding: 1.2rem 0.5rem;
+      }
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        display: none;
+      }
+      tbody tr {
+        margin-bottom: 1.2rem;
+        background: #e3f2fd !important;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(25, 118, 210, 0.08);
+      }
+      td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        font-size: 1rem;
+      }
+      td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1rem;
+        top: 0.9rem;
+        font-weight: 700;
+        color: #1976d2;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="container">
+    <div class="movimenti-card">
+      <h2>Ultimi movimenti</h2>
+      {% if movimenti %}
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Tipo</th>
+              <th>Importo (€)</th>
+              <th>Descrizione</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for m in movimenti %}
+            <tr>
+              <td data-label="Data">{{ m.data }}</td>
+              <td data-label="Tipo">{{ m.tipo }}</td>
+              <td data-label="Importo (€)">{{ "%.2f"|format(m.importo) }}</td>
+              <td data-label="Descrizione">{{ m.descrizione }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>Nessun movimento recente.</p>
+      {% endif %}
+      <a href="{{ url_for('home') }}" class="button">Torna al menu</a>
+    </div>
+  </div>
+</body>
+</html>

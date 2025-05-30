@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Saldo disponibile</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #e3f2fd;
+    }
+    .background {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #1976d2 0%, #64b5f6 100%);
+      opacity: 0.18;
+      z-index: 0;
+    }
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      position: relative;
+    }
+    .saldo-card {
+      background: #fff;
+      padding: 2.5rem 2rem 2rem 2rem;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(25, 118, 210, 0.18);
+      width: 340px;
+      text-align: center;
+      position: relative;
+      margin-top: 2rem;
+    }
+    .logo {
+      margin-bottom: 1.2rem;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #1976d2;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #1976d2;
+      margin-bottom: 2rem;
+    }
+    strong {
+      font-size: 1.5rem;
+      color: #1b5e20;
+      background: #c8e6c9;
+      padding: 0.3rem 1rem;
+      border-radius: 8px;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px rgba(76, 175, 80, 0.08);
+    }
+    a.button {
+      display: inline-block;
+      background: linear-gradient(90deg, #1976d2 0%, #64b5f6 100%);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-top: 1rem;
+      letter-spacing: 0.5px;
+    }
+    a.button:hover {
+      background: linear-gradient(90deg, #1565c0 0%, #42a5f5 100%);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 18px rgba(25, 118, 210, 0.13);
+    }
+    @media (max-width: 500px) {
+      .saldo-card {
+        width: 98vw;
+        padding: 1.2rem 0.5rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      strong {
+        font-size: 1.1rem;
+      }
+      a.button {
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="container">
+    <div class="saldo-card">
+      <div class="logo">
+        <svg width="60" height="60" viewBox="0 0 60 60">
+          <circle cx="30" cy="30" r="28" fill="#1976d2" stroke="#fff" stroke-width="4"/>
+          <rect x="18" y="25" width="24" height="10" rx="3" fill="#fff"/>
+          <rect x="24" y="28" width="12" height="4" rx="2" fill="#1976d2"/>
+        </svg>
+      </div>
+      <h2>Saldo disponibile</h2>
+      <p>Il tuo saldo è: <strong>{{ saldo }} €</strong></p>
+      <a href="{{ url_for('home') }}" class="button">Torna al menu</a>
+    </div>
+  </div>
+</body>
+</html>

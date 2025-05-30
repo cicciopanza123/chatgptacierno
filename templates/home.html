@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bancomat - Home</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #e3f2fd;
+    }
+    .background {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #1976d2 0%, #64b5f6 100%);
+      opacity: 0.18;
+      z-index: 0;
+    }
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      position: relative;
+    }
+    .home-card {
+      background: #fff;
+      padding: 2.5rem 2rem 2rem 2rem;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(25, 118, 210, 0.18);
+      width: 370px;
+      text-align: center;
+      position: relative;
+      margin-top: 2rem;
+    }
+    .logo {
+      margin-bottom: 1.2rem;
+    }
+    h2 {
+      margin-bottom: 2rem;
+      color: #1976d2;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    nav ul li {
+      width: 100%;
+    }
+    nav ul li a {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(90deg, #1976d2 0%, #64b5f6 100%);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      letter-spacing: 0.5px;
+    }
+    nav ul li a:hover {
+      background: linear-gradient(90deg, #1565c0 0%, #42a5f5 100%);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 18px rgba(25, 118, 210, 0.13);
+    }
+    @media (max-width: 500px) {
+      .home-card {
+        width: 98vw;
+        padding: 1.2rem 0.5rem;
+      }
+      nav ul li a {
+        font-size: 1rem;
+        padding: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="container">
+    <div class="home-card">
+      <div class="logo">
+        <svg width="60" height="60" viewBox="0 0 60 60">
+          <circle cx="30" cy="30" r="28" fill="#1976d2" stroke="#fff" stroke-width="4"/>
+          <rect x="18" y="25" width="24" height="10" rx="3" fill="#fff"/>
+          <rect x="24" y="28" width="12" height="4" rx="2" fill="#1976d2"/>
+        </svg>
+      </div>
+      <h2>Menu Principale</h2>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('saldo') }}">Consultazione saldo</a></li>
+          <li><a href="{{ url_for('movimenti') }}">Visualizzazione movimenti</a></li>
+          <li><a href="{{ url_for('prelievo') }}">Prelievo di contanti</a></li>
+          <li><a href="{{ url_for('versamento') }}">Versamento contanti</a></li>
+          <li><a href="{{ url_for('ricarica') }}">Ricarica telefonica</a></li>
+          <li><a href="{{ url_for('pagamento') }}">Pagamento bollettini</a></li>
+          <li><a href="{{ url_for('cambio_pin') }}">Cambio PIN</a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</body>
+</html>
